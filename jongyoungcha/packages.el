@@ -131,7 +131,7 @@ Each entry is either:
   (other-window -1))
 
 ;; 
-(defun upload-files-using-python ()
+(defun upload-files-using-python1()
   "upload files using "
   (interactive)
   (let ((python-module-name "dispatch.py"))
@@ -145,12 +145,35 @@ Each entry is either:
     )
   )
 
+ (defun upload-files-using-python2()
+   "upload files using "
+   (interactive)
+   (let ((home-directory (getenv "HOME"))
+         (uploaded-file-name buffer-file-name))
+
+     (setq python-module-name (format "%s/jongyoungcha-s-python-modules/jyc_upload_file/jyc_upload_file.py" home-directory))
+     (setq command (format "python %s " python-module-name))
+     (message "command : %s" command)
+     (shell-command command))
+     )
+
+(setq jyc-upload-file-current-dir nil)
+
+(defun walk-up-and-find-file (name-to-find)
+  "walk up and find file"
+  (let ((jyc-upload-file-current-dir nil)
+        (is-finded nil))
+  ;(while (equal is-finded nil)
+  ;  )
+    )
+  )
+
+
 (defun with-temp-buffer-test()
   (interactive)
   (with-temp-buffer
     (insert "testest")
     (buffer-string))
-
   )
 
 
