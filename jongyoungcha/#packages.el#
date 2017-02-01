@@ -140,62 +140,31 @@ Each entry is either:
                              #'temp-buffer-show-function
                              nil
                              (while (not file-exists-p full-path)
-                                    (insert "hello, world!!"))
-                                    )
-    )
-  )
+                                    (insert "hello, 
 
- (defun upload-files-using-python2()
-   "upload files using "
-   (interactive)
-   (let ((home-directory (getenv "HOME"))
-         (uploaded-file-name buffer-file-name))
-
-     (setq python-module-name (format "%s/jongyoungcha-s-python-modules/jyc_upload_file/jyc_upload_file.py" home-directory))
-     (setq command (format "python %s " python-module-name))
-     (message "command : %s" command)
-     (shell-command command))
-     )
+;; (defun upload-files-using-python2()
+;;   "upload files using "
+;;   (interactive)
+;;   (let ((home-directory (getenv "HOME"))
+;;         (uploaded-file-name buffer-file-name))____
 
 
-(defun parent-directory (dir)
-  (unless (equal "/" dir)
-    (file-name-directory (directory-file-name dir))))
+;;     (setq python-module-name (format "%s/jongyoungcha-s-python-modules/jyc_upload_file/jyc_upload_file.py" home-directory))
+;;     (setq command (format "python %s " python-module-name))
+;;     (message "command : %s" command)
+;;     (shell-command command))
+;;     )
 
 (setq jyc-upload-file-current-dir nil)
+
 (defun walk-up-and-find-file (name-to-find)
   "walk up and find file"
   (let ((jyc-upload-file-current-dir nil)
-        (is-finded nil)
-        (full-path-to-find nil))
-    (setq jyc-upload-file-current-dir default-directory)
-    (catch 'incase-root
-        (while (equal is-finded nil)
-          (setq full-path-to-find (format "%s/%s" jyc-upload-file-current-dir name-to-find))
-          (if (file-exists-p full-path-to-find)
-              (setq is-finded t)
-            (progn
-              (setq jyc-upload-file-current-dir (parent-directory jyc-upload-file-current-dir))
-              (when (equal jyc-upload-file-current-dir "/")
-                (throw 'incase-root t))
-              )
-          )
-        )
-        )
-    (if (equal is-finded t)
-        full-path-to-find
-      nil)
-    )
+        (is-finded nil))
+  ;(while (equal is-finded nil)
+  ;  )
   )
 
-
-(walk-up-and-find-file "test.py")
-
-(parent-directory default-directory)
-
-
-(setq test1 (directory-file-name default-directory))
-(message "%s" (file-name-directory (directory-file-name default-directory)))
 
 
 (defun with-temp-buffer-test()
